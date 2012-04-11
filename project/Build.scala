@@ -4,11 +4,11 @@ import PlayProject._
 
 object ApplicationBuild extends Build {
 
-    val appName         = "falseFriends"
+    val appName         = "false-friends"
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      // Add your project dependencies here,
+      "org.squeryl" %% "squeryl" % "0.9.5"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(

@@ -3,7 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                        controllers.Application.index
+GET     /listLanguages           controllers.Application.listLanguages
+POST    /addLanguage             controllers.Application.addLanguage
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
