@@ -1,11 +1,9 @@
 package controllers
 
 import play.api.mvc._
-
 import com.codahale.jerkson.Json
 import play.api.data.Form
 import play.api.data.Forms.{mapping, text, optional}
-
 import org.squeryl.PrimitiveTypeMode._
 import squeryl.{DatabaseSchema, Language}
 
@@ -25,9 +23,7 @@ object Application extends Controller {
 
   def listLanguages = Action {
     val json = inTransaction {
-      val languages = from(DatabaseSchema.languages)(l =>
-        select(l)
-      )
+      val languages = Language.selectAll
       Json.generate(languages)
     }
     Ok(json).as(JSON)

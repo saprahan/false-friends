@@ -5,21 +5,14 @@ import org.squeryl.{Schema, KeyedEntity}
 import java.sql.Timestamp
 
 
-object DatabaseSchema extends Schema {
+trait DatabaseSchema extends Schema {
   val languages = table[Language]
   val friends = table[Friend]
   val friendWords = table[FriendWord]
 }
 
-case class Language(
-    name: String, 
-    nameEnglish: String, 
-    code: String
-                     ) extends KeyedEntity[Long] {
-  val id:Long = 0
+object DatabaseSchema extends DatabaseSchema
 
-  def typedId = LanguageId(id)
-}
 
 case class Friend(
                    text: String,
@@ -42,6 +35,12 @@ case class FriendWord(
   def typedLanguageId = LanguageId(languageId)
 }
 
-case class LanguageId(id: Long)
-case class FriendId(id: Long)
-case class FriendWordId(id: Long)
+case class LanguageId(id: Long) extends LongTypedId
+case class FriendId(id: Long) extends LongTypedId
+case class FriendWordId(id: Long) extends LongTypedId
+
+trait TypedId[T] {
+  def id:T
+}
+
+trait LongTypedId extends TypedId[Long]

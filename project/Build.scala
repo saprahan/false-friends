@@ -8,8 +8,11 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      "org.squeryl" %% "squeryl" % "0.9.5"
+      "org.squeryl" 	%% "squeryl" 	% "0.9.5"      
+      
     )
+    
+    //"com.google" 		% "guice" 		% "2.1-r1201"
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
       // Add your own project settings here      

@@ -5,6 +5,9 @@ import play.api.GlobalSettings
 
 import play.api.Application
 
+import play.api.db.DB
+import com.google.inject.Guice        
+
 object Global extends GlobalSettings {
 
   override def onStart(app: Application) {
