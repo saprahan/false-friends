@@ -2,11 +2,9 @@ import org.squeryl.adapters.H2Adapter
 import org.squeryl.{Session, SessionFactory}
 import play.api.db.DB
 import play.api.GlobalSettings
-
 import play.api.Application
-
 import play.api.db.DB
-import com.google.inject.Guice        
+import com.google.inject.Guice   
 
 object Global extends GlobalSettings {
 
@@ -16,6 +14,7 @@ object Global extends GlobalSettings {
       Session.create(
         DB.getConnection()(app),
         new H2Adapter))
+        
   }
 
 }
