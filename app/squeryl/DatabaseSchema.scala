@@ -2,6 +2,11 @@ package squeryl
 
 import org.squeryl.{Schema, KeyedEntity}
 import java.sql.Timestamp
+import play.api.mvc.Request
+import play.api.mvc.AnyContent
+import play.api.mvc.Result
+import play.api.mvc.Action
+import play.api.Play.current
 
 trait DatabaseSchema extends Schema {
   val languages = table[Language]
@@ -10,7 +15,6 @@ trait DatabaseSchema extends Schema {
 }
 
 object DatabaseSchema extends DatabaseSchema
-
 
 case class FriendWord(
                        friendId: Long,

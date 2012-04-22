@@ -4,17 +4,21 @@ import play.api.db.DB
 import play.api.GlobalSettings
 import play.api.Application
 import play.api.db.DB
-import com.google.inject.Guice   
+import com.google.inject.Guice
+import play.api.mvc.RequestHeader
+import play.api.mvc.Handler
+import play.api.Play.current
+import org.squeryl.adapters.MySQLAdapter
 
 object Global extends GlobalSettings {
+  override def onStart(app: Application): Unit =
+    {
+      SessionFactory.externalTransactionManagementAdapter = Some(() =>
+        Some(new Session(
+          DB.getConnection("default", true),
+          dbAdapter)))
+    }
 
-  override def onStart(app: Application) {
-
-    SessionFactory.concreteFactory = Some(() =>
-      Session.create(
-        DB.getConnection()(app),
-        new H2Adapter))
-        
-  }
+  val dbAdapter = new H2Adapter();
 
 }

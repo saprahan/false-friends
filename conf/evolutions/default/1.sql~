@@ -9,7 +9,7 @@ CREATE TABLE Language (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE FalseFriend (
+CREATE TABLE Friend (
 	id	bigint		NOT NULL AUTO_INCREMENT,
 	text	text,
 	createdate datetime	NOT NULL,
@@ -22,12 +22,12 @@ CREATE TABLE FriendWord (
 	languageId	bigint		NOT NULL,
 	word		varchar(2048)	NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (friendId) REFERENCES FalseFriend(id),
-	FOREIGN KEY (languageId) REFERENCES Language(id)
+	FOREIGN KEY (friendId) REFERENCES Friend(id),
+	FOREIGN KEY (languageId) REFERENCES Friend(id)
 );
  
 # --- !Downs
  
 DROP TABLE FriendWord; 
-DROP TABLE FalseFriend; 
+DROP TABLE Friend; 
 DROP TABLE Language; 

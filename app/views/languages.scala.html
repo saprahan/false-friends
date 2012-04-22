@@ -1,0 +1,23 @@
+@(languages: Seq[squeryl.Language])
+
+@main("Languages") {
+  
+  <form action="addLanguage" method="post">
+	Наименование: 
+    <input name="name"/> 
+	Наименование(eng.):  
+    <input name="nameEnglish"/> 
+	Языковой код: 
+    <input name="code"/>
+    <input type="submit"/>
+  </form>
+
+  
+  <ul id="languages">
+  @languages.map { language =>
+    <li>@language.name, @language.nameEnglish, @language.code</li>
+  }
+  </ul>
+
+  <!--<script src="@routes.Assets.at("javascripts/index.min.js")" type="text/javascript"></script>-->
+}
