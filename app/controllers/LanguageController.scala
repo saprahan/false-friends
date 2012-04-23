@@ -38,7 +38,7 @@ object LanguageController
       languageForm.bindFromRequest.value map {
         l =>
           languageService.create(l)
-          Redirect(routes.Application.index())
+          Redirect(routes.LanguageController.index())
       } getOrElse BadRequest
   }
 }

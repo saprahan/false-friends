@@ -1,6 +1,6 @@
 @(languages: Seq[squeryl.Language])
 
-@main("Languages") {
+@content("Languages") {
   
   <form action="addLanguage" method="post">
 	Наименование: 
@@ -11,7 +11,6 @@
     <input name="code"/>
     <input type="submit"/>
   </form>
-
   
   <ul id="languages">
   @languages.map { language =>
