@@ -4,6 +4,7 @@ import squeryl.FalseFriend
 import squeryl.FalseFriendId
 import org.squeryl.PrimitiveTypeMode._
 import squeryl.DatabaseSchema
+import java.util.Calendar
 
 trait GenericFriendsServiceComponent {
   def falseFriendService: FalseFriendService
@@ -18,6 +19,8 @@ trait FriendsServiceComponent extends GenericFriendsServiceComponent {
 
   class FalseFriendServiceImpl extends FalseFriendService with DatabaseSchema {
     def create(entity: FalseFriend) = inTransaction {
+      val createDate = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+      entity.createdate = createDate
       falseFriends.insert(entity).typedId
     }
 
@@ -34,8 +37,7 @@ trait FriendsServiceComponent extends GenericFriendsServiceComponent {
     }
 
     def searchBy(searchText: String) = inTransaction {
-      from(falseFriends, friendWords)((friend, word) =>
-        where(word.word like searchText + "%")
+      from(falseFriends)((friend) =>
           select (friend)).distinct.toSeq
     }
   }

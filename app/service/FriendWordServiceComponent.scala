@@ -10,7 +10,9 @@ import squeryl.FriendWordId
 trait GenericFriendWordServiceComponent {
   def friendWordService: FriendWordService
 
-  trait FriendWordService extends CRUDService[FriendWord, FriendWordId]
+  trait FriendWordService extends CRUDService[FriendWord, FriendWordId] {
+    def selectBy(falseFriendId: FalseFriendId): Seq[FriendWord]
+  }
 }
 
 trait FriendWordServiceComponent extends GenericFriendWordServiceComponent {
@@ -30,7 +32,14 @@ trait FriendWordServiceComponent extends GenericFriendWordServiceComponent {
     }
 
     def delete(entityId: FriendWordId) = inTransaction {
-      falseFriends.delete(entityId.id)
+      friendWords.delete(entityId.id)
+    }
+
+    def selectBy(falseFriendId: FalseFriendId) = inTransaction {
+      from(friendWords)(fW =>
+        where(fW.friendId === falseFriendId.id)
+          select (fW)
+          orderBy (fW.languageId)).toSeq
     }
   }
 }

@@ -1,0 +1,16 @@
+@(falseFriends: Seq[squeryl.FalseFriend])
+
+@content("FalseFriends") {
+  
+  <form action="addFalseFriend" method="post">
+	Текст: 
+    <input name="text"/> 
+    <input type="submit"/>
+  </form>
+  
+  <ul>
+  @falseFriends.map { falseFriend =>
+    <li>@falseFriend.text, @falseFriend.createdate</li>
+  }
+  </ul>
+}

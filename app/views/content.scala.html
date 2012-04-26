@@ -1,6 +1,15 @@
 @(title: String)(innerContent: Html)
 
-@main(title) {
-	@menu()
-	@innerContent
+@main(title) {	
+	
+  <header>
+    @menu()
+  </header>
+  <div role="main">
+    @innerContent	
+  </div>
+  <footer>
+
+  </footer>
+	
 }

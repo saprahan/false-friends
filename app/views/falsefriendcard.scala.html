@@ -1,0 +1,21 @@
+@(falseFriend: squeryl.FalseFriend, friendWords: Seq[squeryl.FriendWord])
+
+@content("False Friend Card") {
+  
+  <form action="addFriendWord" method="post">
+	Текст: 
+    <input name="languageId"/>
+	<input name="word"/>
+	<input name="frienId" type="hidden"/> 
+    <input type="submit"/>
+  </form>
+  
+  <ul>
+  @friendWords.map { friendWord =>
+    <li><b>@friendWord.word</b> <i>@friendWord.languageId</i> <u>@friendWord.friendId</u></li>
+  }
+  </ul>
+  <p>
+  	@falseFriend.text
+  </p>
+}

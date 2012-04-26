@@ -3,10 +3,16 @@
 # ~~~~
 
 # Home page
-GET     /                        		   controllers.Application.index
-GET     /languages/                        controllers.LanguageController.index
-GET     /languages/listLanguages           controllers.LanguageController.listLanguages
-POST    /languages/addLanguage             controllers.LanguageController.addLanguage
+GET     /                        		   	controllers.Application.index
+GET     /languages                        	controllers.LanguageController.index
+GET     /listLanguages           			controllers.LanguageController.listLanguages
+POST    /addLanguage             			controllers.LanguageController.addLanguage
+GET     /friends							controllers.FalseFriendController.search(text = "")
+GET     /friends:text          			controllers.FalseFriendController.search(text)
+GET     /friendCard:id          			controllers.FalseFriendController.card(id:Long)
+POST 	/addFalseFriend 					controllers.FalseFriendController.addFalseFriend
+POST 	/addFriendWord						controllers.FalseFriendController.addFriendWord
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /*file               controllers.Assets.at(path="/public", file)
